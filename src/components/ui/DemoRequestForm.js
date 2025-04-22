@@ -10,7 +10,7 @@ const DemoRequestForm = ({ onClose }) => {
 
     try {
       await axios.post(process.env.URL_1, {
-        token: process.env.TOCKEN,
+        token: process.env.TOKEN,
         nombre: form.name,
         email: form.email,
       });

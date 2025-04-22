@@ -10,7 +10,7 @@ const EarlyAccessForm = ({ onClose }) => {
 
     try {
       await axios.post(process.env.URL_2, {
-        token: process.env.TOCKEN,
+        token: process.env.TOKEN,
         email: email,
       });
     } catch (error) {
