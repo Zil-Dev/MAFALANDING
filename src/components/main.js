@@ -1,4 +1,4 @@
-import Header from "./UI/header";
+import Header from "./ui/header";
 // import Seccion from "./ui/seccion";
 
 import { useState } from "react";
