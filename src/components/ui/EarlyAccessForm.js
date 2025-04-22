@@ -9,7 +9,7 @@ const EarlyAccessForm = ({ onClose }) => {
     e.preventDefault();
 
     try {
-      await axios.post(process.env.URL_2, {
+      await axios.post("https://script.google.com/macros/s/AKfycbx8GGlhgJVa5n9uOWPsuE5Dq3ShqO8B0ZTRpA82RMgirEdk55z0sMziF34dvkK5j2McyQ/exec", {
         token: process.env.TOKEN,
         email: email,
       });

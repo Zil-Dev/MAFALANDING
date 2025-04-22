@@ -9,7 +9,7 @@ const DemoRequestForm = ({ onClose }) => {
     e.preventDefault();
 
     try {
-      await axios.post(process.env.URL_1, {
+      await axios.post("https://script.google.com/macros/s/AKfycbwWR0MRq8Z2r8wtYLmHv96qY4B775fpKo4f3JDqGlcEJiiKRUEs_IsLujWmSE8d-xkYjA/exec", {
         token: process.env.TOKEN,
         nombre: form.name,
         email: form.email,
