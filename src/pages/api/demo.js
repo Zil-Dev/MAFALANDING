@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   
     try {
       // Aquí puedes ajustar los datos que envías
-      const { nombre, email } = req.body;
+      const { nombre, email, telefono } = req.body;
   
       const scriptUrl = 'https://script.google.com/macros/s/AKfycbwWR0MRq8Z2r8wtYLmHv96qY4B775fpKo4f3JDqGlcEJiiKRUEs_IsLujWmSE8d-xkYjA/exec';
   
@@ -16,7 +16,8 @@ export default async function handler(req, res) {
         body: JSON.stringify({ 
             token: process.env.TOKEN,
             nombre, 
-            email 
+            email,
+            telefono,
         }),
         headers: {
           'Content-Type': 'application/json',
