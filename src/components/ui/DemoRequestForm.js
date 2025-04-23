@@ -70,7 +70,7 @@ const DemoRequestForm = ({ onClose }) => {
           placeholder="664-457-8123"
           type="tel"
           value={form.telefono}
-          pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
           onChange={(e) => setForm({ ...form, telefono: e.target.value })}
         />
         <button
