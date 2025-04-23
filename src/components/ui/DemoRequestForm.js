@@ -5,7 +5,7 @@ import { addAlerta } from "../../redux/features/alertas";
 
 const DemoRequestForm = ({ onClose }) => {
   const dispatch = useDispatch();
-  const [form, setForm] = useState({ name: "", email: "" });
+  const [form, setForm] = useState({ name: "", email: "", telefono: ""});
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -21,6 +21,7 @@ const DemoRequestForm = ({ onClose }) => {
         body: JSON.stringify({
           nombre: form.name,
           email: form.email,
+          telefono: form.telefono
         }),
       });
 
@@ -63,6 +64,14 @@ const DemoRequestForm = ({ onClose }) => {
           type="email"
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
+        />
+        <input
+          className="w-full border rounded-lg p-2"
+          placeholder="664-457-8123"
+          type="tel"
+          value={form.telefono}
+          pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+          onChange={(e) => setForm({ ...form, telefono: e.target.value })}
         />
         <button
           className="bg-purple-600 text-white px-4 py-2 rounded-lg"
