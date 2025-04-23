@@ -12,7 +12,7 @@ const EarlyAccessForm = ({ onClose }) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
-          email: form.email, 
+          email, 
         }),
       });
     
