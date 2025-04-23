@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ModalWrapper from "./ModalWrapper";
-import axios from "axios";
 
 const EarlyAccessForm = ({ onClose }) => {
   const [email, setEmail] = useState("");
@@ -9,10 +8,16 @@ const EarlyAccessForm = ({ onClose }) => {
     e.preventDefault();
 
     try {
-      await axios.post("https://script.google.com/macros/s/AKfycbx8GGlhgJVa5n9uOWPsuE5Dq3ShqO8B0ZTRpA82RMgirEdk55z0sMziF34dvkK5j2McyQ/exec", {
-        token: process.env.NEXT_PUBLIC_TOKEN,
-        email: email,
+      const res = await fetch('/api/record', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          email: form.email, 
+        }),
       });
+    
+      const data = await res.json();
+      console.log('Respuesta del servidor:', data);
     } catch (error) {
       console.error(error)
     }

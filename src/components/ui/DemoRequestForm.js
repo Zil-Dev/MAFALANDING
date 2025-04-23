@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ModalWrapper from "./ModalWrapper";
-import axios from "axios";
 
 const DemoRequestForm = ({ onClose }) => {
   const [form, setForm] = useState({ name: "", email: "" });
@@ -9,11 +8,17 @@ const DemoRequestForm = ({ onClose }) => {
     e.preventDefault();
 
     try {
-      await axios.post("https://script.google.com/macros/s/AKfycbwWR0MRq8Z2r8wtYLmHv96qY4B775fpKo4f3JDqGlcEJiiKRUEs_IsLujWmSE8d-xkYjA/exec", {
-        token: process.env.NEXT_PUBLIC_TOKEN,
-        nombre: form.name,
-        email: form.email,
+      const res = await fetch('/api/demo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          nombre: form.name,
+          email: form.email, 
+        }),
       });
+    
+      const data = await res.json();
+      console.log('Respuesta del servidor:', data);
     } catch (error) {
       console.error(error)
     }
