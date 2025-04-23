@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ModalWrapper from "./ModalWrapper";
 import axios from "axios";
+import '../../envConfig.js'
 
 const EarlyAccessForm = ({ onClose }) => {
   const [email, setEmail] = useState("");
