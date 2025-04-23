@@ -141,7 +141,7 @@ export const HeroSection = ({setModal}) => {
       </div>
     </div>
 
-    <div className="bg-gray-100 rounded-xl shadow-lg mt-10 lg:mt-0 lg:ml-12 w-full max-w-[40rem] h-[20rem] sm:h-[30rem] p-5">
+    <div className="bg-gray-100 rounded-xl shadow-lg mt-10 lg:mt-0 lg:ml-12 w-full max-w-[40rem] h-[20rem] sm:h-[30rem] p-5 flex flex-col justify-center">
       <ImageCarousel />
     </div>
   </div>

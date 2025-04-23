@@ -1,11 +1,15 @@
 import '../styles/global.css'
+import { store } from '../redux/store'
+import { Provider } from 'react-redux'
 
 const AppComponent = ({ Component, pageProps, currentUser }) => {
     
     return (
-        <div className='w-screen h-dvh overflow-hidden'>
-            <Component {...pageProps}/> 
-        </div>
+        <Provider store={store} >
+            <div className='w-screen h-dvh overflow-hidden'>
+                <Component {...pageProps}/> 
+            </div>
+        </Provider>
     )
 }
 

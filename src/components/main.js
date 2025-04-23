@@ -15,6 +15,7 @@ import {
 import AppInfoModal from "./ui/AppInfoModal";
 import DemoRequestForm from "./ui/DemoRequestForm";
 import EarlyAccessForm from "./ui/EarlyAccessForm";
+import { Alertas } from "./ui/Alertas";
 
 
 export default () => {
@@ -23,6 +24,7 @@ export default () => {
   return (
     <div className="overflow-scroll no-scrollbar h-[100%] w-[100%] bg-gray-200">
       <Header />
+      <Alertas/>
       <HeroSection setModal={setModal} />
       {/* <ImageCarousel /> */}
 
@@ -32,7 +34,7 @@ export default () => {
 
       {modal === "info" && <AppInfoModal onClose={() => setModal("")} />}
       {modal === "demo" && <DemoRequestForm onClose={() => setModal("")} />}
-      {modal === "early" && <EarlyAccessForm onClose={() => setModal("")} />}
+      {modal === "early" && <EarlyAccessForm onClose={() => setModal("")} />}      
     </div>
   );
 };

@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import ModalWrapper from "./ModalWrapper";
+import { useDispatch, useSelector } from "react-redux";
+import { addAlerta, addNotification, setAlertas } from "../../redux/features/alertas";
 
 const EarlyAccessForm = ({ onClose }) => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (loading) return; // Previene múltiples clics
+    setLoading(true);
 
     try {
       const res = await fetch('/api/record', {
@@ -17,14 +24,27 @@ const EarlyAccessForm = ({ onClose }) => {
       });
     
       const data = await res.json();
-      console.log('Respuesta del servidor:', data);
+
+      dispatch(addAlerta({
+        title: "Registrado !!",
+        message: "Se registro con exito !!",
+        status: "success"
+      }))
+
     } catch (error) {
       console.error(error)
+      dispatch(addAlerta({
+        title: "Hubo un Error",
+        message: "Al parecer no se pudo registrar, intentelo nuevamente en unos minutos.",
+        status: "danger"
+      }))
     }
+    
     
 
     onClose(); 
   };
+  
 
   return (
     <ModalWrapper onClose={onClose}>
@@ -37,8 +57,8 @@ const EarlyAccessForm = ({ onClose }) => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button className="bg-purple-700 text-white px-4 py-2 rounded-lg" type="submit">
-          Registrarme
+        <button className="bg-purple-700 text-white px-4 py-2 rounded-lg" type="submit" disabled={loading}>
+          {loading ? 'Registrando...' : 'Registrarme'}
         </button>
       </form>
     </ModalWrapper>

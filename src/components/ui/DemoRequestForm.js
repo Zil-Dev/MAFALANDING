@@ -1,30 +1,50 @@
 import React, { useState } from "react";
 import ModalWrapper from "./ModalWrapper";
+import { useDispatch } from "react-redux";
+import { addAlerta } from "../../redux/features/alertas";
 
 const DemoRequestForm = ({ onClose }) => {
+  const dispatch = useDispatch();
   const [form, setForm] = useState({ name: "", email: "" });
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (loading) return; // Previene múltiples clics
+    setLoading(true);
+
     try {
-      const res = await fetch('/api/demo', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
+      const res = await fetch("/api/demo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
           nombre: form.name,
-          email: form.email, 
+          email: form.email,
         }),
       });
-    
-      const data = await res.json();
-      console.log('Respuesta del servidor:', data);
-    } catch (error) {
-      console.error(error)
-    }
-    
 
-    onClose(); 
+      const data = await res.json();
+      dispatch(
+        addAlerta({
+          title: "Solicitun enviada !!",
+          message: "La solicitus fue enviada con exito !!",
+          status: "success",
+        })
+      );
+    } catch (error) {
+      console.error(error);
+      dispatch(
+        addAlerta({
+          title: "Hubo un Error",
+          message:
+            "Al parecer no se pudo registrar, intentelo nuevamente en unos minutos.",
+          status: "danger",
+        })
+      );
+    }
+
+    onClose();
   };
 
   return (
@@ -44,8 +64,11 @@ const DemoRequestForm = ({ onClose }) => {
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
         />
-        <button className="bg-purple-600 text-white px-4 py-2 rounded-lg" type="submit">
-          Enviar solicitud
+        <button
+          className="bg-purple-600 text-white px-4 py-2 rounded-lg"
+          type="submit"
+        >
+          {loading ? 'Enviando solicitud...' : 'Enviar solicitud'}
         </button>
       </form>
     </ModalWrapper>
