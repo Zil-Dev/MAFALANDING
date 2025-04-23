@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ModalWrapper from "./ModalWrapper";
 import axios from "axios";
-import '../../envConfig.js'
 
 const DemoRequestForm = ({ onClose }) => {
   const [form, setForm] = useState({ name: "", email: "" });
@@ -11,7 +10,7 @@ const DemoRequestForm = ({ onClose }) => {
 
     try {
       await axios.post("https://script.google.com/macros/s/AKfycbwWR0MRq8Z2r8wtYLmHv96qY4B775fpKo4f3JDqGlcEJiiKRUEs_IsLujWmSE8d-xkYjA/exec", {
-        token: process.env.TOKEN,
+        token: process.env.NEXT_PUBLIC_TOKEN,
         nombre: form.name,
         email: form.email,
       });

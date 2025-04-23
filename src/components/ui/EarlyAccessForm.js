@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ModalWrapper from "./ModalWrapper";
 import axios from "axios";
-import '../../envConfig.js'
 
 const EarlyAccessForm = ({ onClose }) => {
   const [email, setEmail] = useState("");
@@ -11,7 +10,7 @@ const EarlyAccessForm = ({ onClose }) => {
 
     try {
       await axios.post("https://script.google.com/macros/s/AKfycbx8GGlhgJVa5n9uOWPsuE5Dq3ShqO8B0ZTRpA82RMgirEdk55z0sMziF34dvkK5j2McyQ/exec", {
-        token: process.env.TOKEN,
+        token: process.env.NEXT_PUBLIC_TOKEN,
         email: email,
       });
     } catch (error) {
